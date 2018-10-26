@@ -9,67 +9,6 @@
       </ul>
     </div>
   <% end %>
-<section class="fdb-block fp-active" data-block-type="forms" data-id="1" draggable="true">
-  <div class="container">
-    <div class="row justify-content-center">
-      <div class="col-12  col-md-10 col-lg-8 col-xl-6 text-center">
-        <img alt="image" height="40" src="https://editor-latest.s3.amazonaws.com/design-blocks/block_images/img_round.svg">
-        <h1>確認画面</h1>
-        <p class="text-h3">以下の内容で登録しますか？</p>
-        <div class="row">
-          <div class="col mt-4">
-        <div class="field">
-          <%= form_with(model: @post, url: posts_path, local: true) do |form| %>
-            <!-- 確認画面でアップロードした画像を表示させるための記述 -->
-            <%= image_tag(@post.image, :style => " width: 100%; object-fit: cover")  if @post.image.url  %>
-            <%= form.hidden_field :image_cache %>
-            <%= form.hidden_field :title %>
-            <%= form.hidden_field :comment %>
-
-          <label class="btn btn-primary">
-          	<strong>＋写真を変更する</strong>
-          <%= form.file_field :image, id: :feed_image, :style=>"display:none;"%>
-        </label>
-        <% end %>
-        </div>
-      </div>
-    </div>
-
-        <div class="row">
-          <div class="col mt-4">
-            <%= form.text_field :title ,:class=>"form-control", :placeholder=>"タイトル"%>
-          </div>
-        </div>
-        <div class="row">
-          <div class="col mt-4">
-            <%= form.text_field :comment ,:class=>"form-control", :placeholder=>"コメント"%>
-          </div>
-        </div>
-        <div class="row">
-          <div class="col mt-4">
-            <%= form.submit "投稿する", :class=>"btn" %>
-          </div>
-        </div>
-  </div>
-</section>
-<% end %>
-
-
-<%= form_with(model:@post, url:posts_path, local:true, method:"get") do |form| %>
-  <%= form.submit "一覧画面にもどる", name: "back" , :class=>"btn btn-outline-info"  %>
-<% end %>
-
-<%= form_with(model: @post, url: posts_path, local: true) do |form| %>
-  <% if @post.errors.any? %>
-    <div id="error_explanation">
-      <h2 class="alert alert-success" role="alert"><%= @post.errors.count %>件のエラーがあります。</h2>
-      <ul class="alert alert-danger" role="alert">
-      <% @post.errors.full_messages.each do |msg| %>
-        <li ><%= msg %></li>
-      <% end %>
-      </ul>
-    </div>
-  <% end %>
 <section class="fdb-block fp-active" style="background-image: url(../gahag-0094418071-1.jpg)" data-block-type="forms" data-id="3" draggable="true">
   <div class="container">
     <div class="row justify-content-center">
