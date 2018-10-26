@@ -23,7 +23,7 @@
           <div class="row mt-4">
             <div class="col">
               <div class="field">
-                <%= image_tag(@post.image_url :style => " width: 100%; object-fit: cover") if @post.image.url %>
+                <%= image_tag(@post.image_url :style => " width: 100%; object-fit: cover") if @post.image_url %>
                 <label class="btn btn-primary">
                 	<strong>＋写真を選択する</strong>
                 <%= form.file_field :image, id: :feed_image, :style=>"display:none;"%>
