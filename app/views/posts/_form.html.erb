@@ -16,14 +16,14 @@
         <div class="fdb-box fdb-touch">
           <div class="row">
             <div class="col">
-              <h1>新規投稿画面</h1>
+              <h1>投稿画面</h1>
               <p class="text-h3">写真を選択するボタンから画像を選択したらメッセージを添えて投稿してみてください！</p>
             </div>
           </div>
           <div class="row mt-4">
             <div class="col">
               <div class="field">
-                <%= image_tag(@post.image.url, :style => " width: 100%; object-fit: cover") if @post.image.url %>
+                <%= image_tag(@post.image_url :style => " width: 100%; object-fit: cover") if @post.image.url %>
                 <label class="btn btn-primary">
                 	<strong>＋写真を選択する</strong>
                 <%= form.file_field :image, id: :feed_image, :style=>"display:none;"%>
