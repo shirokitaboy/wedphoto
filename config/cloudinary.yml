@@ -1,0 +1,19 @@
+---
+development:
+  cloud_name: hjtj8vib7
+  api_key: '138678651651825'
+  api_secret: VskHG_CcfC8Ev7Cq4C7EaAU5dNQ
+  enhance_image_tag: true
+  static_image_support: false
+production:
+  cloud_name: hjtj8vib7
+  api_key: '138678651651825'
+  api_secret: VskHG_CcfC8Ev7Cq4C7EaAU5dNQ
+  enhance_image_tag: true
+  static_image_support: true
+test:
+  cloud_name: hjtj8vib7
+  api_key: '138678651651825'
+  api_secret: VskHG_CcfC8Ev7Cq4C7EaAU5dNQ
+  enhance_image_tag: true
+  static_image_support: false

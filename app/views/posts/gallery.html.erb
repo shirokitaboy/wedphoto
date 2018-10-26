@@ -14,7 +14,7 @@
       </div>
       <div class="thumb-item-nav">
         <% @randposts.each do |r| %>
-        <div><%= image_tag(r.image, :class => "img-responsive border-info", :height => 100) %></div>
+        <div><%= image_tag(r.image.url, :class => "img-responsive border-info", :height => 100) %></div>
         <% end %>
       </div>
     </div>
