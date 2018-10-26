@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Wedphoto</title>
+    <%= csrf_meta_tags %>
+    <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track': 'reload' %>
+    <%= javascript_include_tag 'application', 'data-turbolinks-track': 'reload' %>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <script type="text/javascript" src="//cdn.jsdelivr.net/npm/slick-carousel@1.8.1/slick/slick.min.js"></script>
+    <link rel="stylesheet" type="text/css" href="//cdn.jsdelivr.net/npm/slick-carousel@1.8.1/slick/slick.css"/>
+    <link rel="stylesheet" type="text/css" href="//cdn.jsdelivr.net/npm/slick-carousel@1.8.1/slick/slick-theme.css"/>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/froala-design-blocks/1.0.2/css/froala_blocks.min.css">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta.2/css/bootstrap.min.css">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:100,100i,300,300i,400,400i,500,500i,700,700i,900,900i">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.css">
+  </head>
+
+  <body>
+    <!--ヘッダー-->
+    <nav class="navbar navbar-expand-lg navbar-light bg-light">
+      <button class="navbar-toggler navbar-toggler-right" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+      <a class="navbar-brand" href="/">WedPhoto</a>
+      <div class="collapse navbar-collapse" id="navbarSupportedContent">
+        <ul class="navbar-nav mr-auto">
+          <li class="nav-item active">
+            <a class="nav-link" href="/posts">みんなの投稿<span class="sr-only">(current)</span></a>
+          </li>
+          <% if logged_in? %>
+          <li class="nav-item">
+            <a class="nav-link" href="/posts/new">新規投稿</a>
+          </li>
+          <% else %>
+          <li class="nav-item">
+            <a class="nav-link" href="/">新規投稿</a>
+          </li>
+          <% end %>
+          <li class="nav-item">
+            <a class="nav-link" href="/posts/gallery">フォトギャラリー</a>
+          </li>
+          <% if logged_in? %>
+          <li class="nav-item">
+            <%= link_to "マイページ", user_path(current_user.id), class: 'nav-link'   %>
+          </li>
+          <% end %>
+        </ul>
+        <% if logged_in? %>
+          <%= link_to "Logout", session_path(current_user.id), class: 'btn btn-outline-info'  , method: :delete %>
+        <% else %>
+          <!--<%= link_to "Register", new_user_path, class: 'btn btn-outline-info'   %>-->
+          <%= link_to "Login", new_session_path, class: 'btn btn-outline-info'   %>
+        <% end %>
+</nav>
+<% flash.each do |key, value| %>
+  <%= content_tag(:div, value, class: "#{key} alert alert-success", role: "alert") %>
+<% end %>
+    <%= yield %>
+    <footer class="fdb-block footer-large bg-dark fp-active" data-block-type="footers" data-id="19">
+      <div class="container">
+        <div class="row align-items-top text-center text-md-left">
+          <div class="col-12 col-sm-6 col-md-4">
+            <h3><strong>Country A</strong></h3>
+            <p>Street Address 52<br>Contact Name</p>
+            <p>+44 827 312 5002</p>
+            <p><a href="https://www.froala.com">countrya@amazing.com</a></p>
+          </div>
+
+          <div class="col-12 col-sm-6 col-md-4 mt-4 mt-sm-0">
+            <h3><strong>Country B</strong></h3>
+            <p>Street Address 100<br>Contact Name</p>
+            <p>+13 827 312 5002</p>
+            <p><a href="https://www.froala.com">countryb@amazing.com</a></p>
+          </div>
+
+          <div class="col-12 col-md-4 mt-5 mt-md-0 text-md-left">
+            <h3><strong>About Me</strong></h3>
+            <p>I am aiming for full stack engineer.</p>
+            <p>My skills：</p>
+            <p>Cisco/Linux/Openstack/Java/Python/Ruby/etc...</p>
+          </div>
+        </div>
+
+        <div class="row mt-5">
+          <div class="col text-center">
+            © 2018 Wedphoto. All Rights Reserved
+          </div>
+        </div>
+      </div>
+    </footer>
+  </body>
+</html>

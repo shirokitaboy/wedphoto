@@ -1,0 +1,53 @@
+<% if @user.errors.any? %>
+  <div id="error_explanation">
+    <h2 class="alert alert-success" role="alert"><%= @user.errors.count %> 件のエラーがあります。</h2>
+    <ul class="alert alert-danger" role="alert">
+    <% @user.errors.full_messages.each do |message| %>
+      <li><%= message %></li>
+    <% end %>
+    </ul>
+  </div>
+<% end %>
+<section class="fdb-block" style="background-image: url(../bloom-1836315_1920.jpg);" data-block-type="forms" data-id="24">
+  <div class="container">
+    <div class="row justify-content-center">
+      <div class="col-12 col-md-8 col-lg-7 col-md-5 text-center">
+        <div class="fdb-box fdb-touch">
+         <%= form_with(model: @user, url: confirm_users_path, local: true) do |f| %>
+          <div class="row">
+            <div class="col">
+              <h1>Register</h1>
+            </div>
+          </div>
+          <div class="row">
+            <div class="col mt-4">
+              <%= f.text_field :name ,:class=>"form-control", :placeholder=>"name"%>
+            </div>
+          </div>
+          <div class="row mt-4">
+            <div class="col">
+              <%= f.email_field :email, :class=>"form-control", :placeholder=>"email"%>
+            </div>
+          </div>
+          <div class="row mt-4">
+            <div class="col">
+              <%= f.password_field :password, :class=>"form-control mb-1", :placeholder=>"password" %>
+            </div>
+          </div>
+          <div class="row mt-4">
+            <div class="col">
+              <%= f.password_field :password_confirmation, :class=>"form-control mb-1", :placeholder=>"password_confirmation" %>
+              <p class="text-right"><%= link_to "Already have an account?", new_session_path, class: 'btn btn-outline-info'   %></p>
+            </div>
+          </div>
+          <div class="row mt-4">
+            <div class="col">
+              <%= f.submit "Create New Account", :class=>"btn" %>
+            </div>
+          </div>
+          <% end %>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>

@@ -1,0 +1,72 @@
+<h1>ブログ詳細画面</h1>
+<p>タイトル: <%= @post.title %></p>
+<strong>Image:</strong>
+<p><%= image_tag @post.image %></p>
+<p>内容: <%= @post.comment %></p>
+
+<% unless @post.user_id == current_user.id %>
+  <% if @favorite.present? %>
+    <%= link_to 'お気に入り解除する', favorite_path(id: @favorite.id), method: :delete, class: 'btn btn-danger' %>
+  <% else %>
+    <%= link_to 'お気に入りする', favorites_path(post_id: @post.id), method: :post, class: 'btn btn-primary' %>
+  <% end %>
+<% end %>
+
+<a href="/posts">一覧画面にもどる</a>
+
+<%= form_with(model: @post, url: choose_new_or_edit, local: true) do |form| %>
+  <% if @post.errors.any? %>
+    <div id="error_explanation">
+      <h2 class="alert alert-success" role="alert"><%= @post.errors.count %>件のエラーがあります。</h2>
+      <ul class="alert alert-danger" role="alert">
+      <% @post.errors.full_messages.each do |msg| %>
+        <li ><%= msg %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+<section class="fdb-block fp-active" style="background-image: url(../gahag-0094418071-1.jpg)" data-block-type="forms" data-id="3" draggable="true">
+  <div class="container">
+    <div class="row justify-content-center">
+      <div class="col-12 col-md-8 col-lg-7 col-xl-5 text-center">
+        <div class="fdb-box fdb-touch">
+          <div class="row">
+            <div class="col">
+              <h1>投稿詳細</h1>
+              <p class="text-h3">お気に入りボタンから気に入った投稿をチェックできます！</p>
+            </div>
+          </div>
+          <div class="row mt-4">
+            <div class="col">
+              <div class="field">
+                <%= image_tag(@post.image.url, :style => " width: 100%; object-fit: cover") if @post.image.url %>
+              </div>
+            </div>
+          </div>
+          <div class="row mt-4">
+            <div class="col">
+              <p><strong><%= @post.comment %></strong></p>
+            </div>
+          </div>
+          <div class="row mt-4">
+            <div class="col">
+              <% unless @post.user_id == current_user.id %>
+                <% if @favorite.present? %>
+                  <%= link_to 'お気に入り解除する', favorite_path(id: @favorite.id), method: :delete, class: 'btn btn-danger' %>
+                <% else %>
+                  <%= link_to 'お気に入りする', favorites_path(post_id: @post.id), method: :post, class: 'btn btn-primary' %>
+                <% end %>
+              <% end %>
+            </div>
+          </div>
+          <div class="row mt-4">
+            <div class="col">
+          <a href="/posts">一覧画面にもどる</a>
+        </div>
+      </div>
+    </div>
+  </div>
+    </div>
+  </div>
+</section>
+<% end %>

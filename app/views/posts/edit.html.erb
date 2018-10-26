@@ -1,0 +1,57 @@
+<%= form_with(model: @post, local: true) do |form| %>
+  <% if @post.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= @post.errors.count %>件のエラーがあります。</h2>
+      <ul>
+      <% @post.errors.full_messages.each do |msg| %>
+        <li><%= msg %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+<% end %>
+<%= form_with(model: @post, url: choose_new_or_edit, local: true) do |form| %>
+<section class="fdb-block fp-active" style="background-image: url(b053.jpg);" data-block-type="forms" data-id="1" draggable="true">
+  <div class="container">
+    <div class="row justify-content-center">
+      <div class="col-12  col-md-10 col-lg-8 col-xl-6 text-center">
+        <img alt="image" height="40" src="https://editor-latest.s3.amazonaws.com/design-blocks/block_images/img_round.svg">
+        <h1>編集画面</h1>
+        <p class="text-h3">写真を選択するボタンから画像を選択したらタイトルとメッセージを添えて投稿してみてください！</p>
+        <div class="row">
+          <div class="col mt-4">
+        <div class="field">
+          <%= image_tag(@post.image.url, :style => " width: 100%; object-fit: cover") if @post.image.url %>
+          <label class="btn btn-primary">
+          	<strong>＋写真を選択する</strong>
+          <%= form.file_field :image, id: :feed_image, :style=>"display:none;"%>
+        </label>
+        </div>
+      </div>
+    </div>
+
+        <div class="row">
+          <div class="col mt-4">
+            <%= form.text_field :title ,:class=>"form-control", :placeholder=>"タイトル"%>
+          </div>
+        </div>
+        <div class="row">
+          <div class="col mt-4">
+            <%= form.text_field :comment ,:class=>"form-control", :placeholder=>"コメント"%>
+          </div>
+        </div>
+        <div class="row">
+          <div class="col mt-4">
+            <%= form.submit "投稿する", :class=>"btn" %>
+          </div>
+        </div>
+  </div>
+</section>
+<% end %>
+<script src="https://code.jquery.com/jquery-3.2.1.slim.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.11.0/umd/popper.min.js"></script>
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta.2/js/bootstrap.min.js"></script>
+
+
+
+<%= link_to "一覧画面にもどる", posts_path %>

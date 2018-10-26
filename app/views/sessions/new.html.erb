@@ -1,0 +1,32 @@
+<section class="fdb-block" style="background-image: url(../bloom-1836315_1920.jpg);" data-block-type="forms" data-id="24">
+  <div class="container">
+    <div class="row justify-content-center">
+      <div class="col-12 col-md-8 col-lg-7 col-md-5 text-center">
+        <div class="fdb-box fdb-touch">
+         <%= form_with(scope: :session, url: sessions_path, local: true) do |f| %>
+          <div class="row">
+            <div class="col">
+              <h1>Enter Your Information</h1>
+            </div>
+          </div>
+          <div class="row mt-4">
+            <div class="col">
+              <%= f.email_field :email, :class=>"form-control", :placeholder=>"email"%>
+            </div>
+          </div>
+          <div class="row mt-4">
+            <div class="col">
+              <%= f.password_field :password, :class=>"form-control mb-1", :placeholder=>"password" %>
+            </div>
+          </div>
+          <div class="row mt-4">
+            <div class="col">
+              <%= f.submit "Log in", :class=>"btn" %>
+            </div>
+          </div>
+          <% end %>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>

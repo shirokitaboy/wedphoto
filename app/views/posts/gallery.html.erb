@@ -1,0 +1,49 @@
+<div class="container">
+  <div class="row justify-content-center">
+    <div class="col-12  text-center">
+      <div class="thumb-item img-responsive center-block">
+        <% @randposts.each do |r| %>
+        <div class="img-responsive center-block"><%= image_tag(r.image, :class => "img-responsive center-block", :style => " width: 100%; object-fit: cover")%></div>
+        <% end %>
+      </div>
+      <div class="thumb-item img-responsive center-block">
+        <% @randposts.each do |r| %>
+        <div class="alert alert-primary" role="alert"><strong><%= r.user.name %>さんより:</strong> <%= r.comment %></div>
+        <% end %>
+      </div>
+      <div class="thumb-item-nav">
+        <% @randposts.each do |r| %>
+        <div><%= image_tag(r.image, :class => "img-responsive border-info", :height => 100) %></div>
+        <% end %>
+      </div>
+    </div>
+  </div>
+</div>
+
+
+<script>
+$(function() {
+  $('.thumb-item').slick({
+    autoplay: true,
+    autoplaySpeed: 3000,
+    fade: false,
+    arrows: false,
+    infinite: true,
+    slidesToShow: 1,
+    slidesToScroll: 1,
+    pauseOnHover: false,
+    asNavFor: '.thumb-item-nav' //サムネイルのクラス名
+  });
+  $('.thumb-item-nav').slick({
+          infinite: true,
+          slidesToShow: 5,
+          slidesToScroll: 1,
+          asNavFor: '.thumb-item', //スライダー本体のクラス名
+          focusOnSelect: true,
+          centerPadding: '60px'
+     });
+});
+setTimeout(function () {
+    location.reload();
+}, 15000);
+</script>

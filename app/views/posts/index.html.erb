@@ -1,0 +1,35 @@
+<section style="background-image: url(b053.jpg);">
+<%= search_form_for @search do |f| %>
+<div class="input-group">
+  <%= f.search_field :title_or_comment_or_user_name_cont, :class=>"form-control col-xs-1 col-md-4", :placeholder=>"キーワードから検索します" %>
+  <span class="input-group-btn">
+  <div class="btn btn-default"><%= f.submit "検索", :class=>"btn btn-default"%></div>
+</span>
+</div>
+<% end %>
+  <div class="container">
+    <div class="row justify-content-center text-center">
+      <% @posts.each do |post| %>
+      <div class="col-md-3 col-sm-2 m-sm-3">
+        <div class="card" style="width: 18rem; height: 21rem;">
+          <%= link_to post_path(post), target: "_blank" do %>
+          <%= image_tag(post.image, :style => " height: 12rem; object-fit: cover", :class => "card-img-top border-bottom")%>
+      <% end %>
+          <div class="card-body">
+            <strong class="card-title"><%= post.user.name %>さん</strong>
+            <p class="card-text" style="word-wrap: break-word;"><%= post.comment %></p>
+          </div>
+          <% if logged_in? %>
+          <% if post.user_id == current_user.id %>
+          <div col-xs-5></div>
+          <div col-xs-2><%= link_to 'Delete', post, class: 'btn-xs-2 btn-danger', method: :delete, data: { confirm: '本当に削除しますか?' } %></div>
+          <div col-xs-5></div>
+          <% end %>
+          <% end %>
+
+        </div>
+      </div>
+      <% end %>
+    </div>
+  </div>
+</section>

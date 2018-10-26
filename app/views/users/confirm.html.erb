@@ -1,0 +1,48 @@
+<% if @user.errors.any? %>
+  <div id="error_explanation">
+    <h2 class="alert alert-success" role="alert"><%= @user.errors.count %> 件のエラーがあります。</h2>
+    <ul class="alert alert-danger" role="alert">
+    <% @user.errors.full_messages.each do |message| %>
+      <li><%= message %></li>
+    <% end %>
+    </ul>
+  </div>
+<% end %>
+<section class="fdb-block" style="background-image: url(../bloom-1836315_1920.jpg);" data-block-type="forms" data-id="24">
+  <div class="container">
+    <div class="row justify-content-center">
+      <div class="col-12 col-md-8 col-lg-7 col-md-5 text-center">
+        <div class="fdb-box fdb-touch">
+         <%= form_with(model: @user, url: users_path, local: true) do |form| %>
+          <div class="row">
+            <div class="col">
+              <h1>ユーザー登録</h1>
+              <p class="text-h3">以下の内容でユーザー登録しますか？</p>
+            </div>
+          </div>
+          <div class="row mt-4">
+            <div class="col">
+              <%= form.hidden_field :name %>
+              <%= form.hidden_field :email %>
+              <%= form.hidden_field :password %>
+              <%= form.hidden_field :password_confirmation %>
+              <h2>ユーザー名:  <%= @user.name %>さん</h2>
+              <h2>Email:  <%= @user.email %></h2>
+              <%= form.submit "Create New Account", :class=>"btn" %>
+            </div>
+          </div>
+          <% end %>
+          <div class="row mt-4">
+          <div class="col">
+          <%= form_with(model: @user, url: new_user_path, local: true, method: 'get') do |form| %>
+          <%= form.hidden_field :name %>
+          <%= form.hidden_field :email %>
+            <%= form.submit "戻る", :class=>"btn btn-outline-danger"  %>
+          <% end %>
+        </div>
+      </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>

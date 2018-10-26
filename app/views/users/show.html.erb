@@ -1,0 +1,80 @@
+ <!--Bootstrap４に必要なCSSとJavaScriptを読み込み-->
+<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css" integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO" crossorigin="anonymous">
+
+<script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.3/umd/popper.min.js" integrity="sha384-ZMP7rVo3mIykV+2+9J3UJ46jBk0WLaUAdn689aCwoqbBJiSnjAK/l8WvCWPIPm49" crossorigin="anonymous"></script>
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/js/bootstrap.min.js" integrity="sha384-ChfqqxuZUCnJSK3+MXmPNIyE6ZbWh2IMqE241rYiqJxyMiZ6OW/JmZQ5stwEULTy" crossorigin="anonymous"></script>
+<h1 class="text-center"><%= @user.name %>のページ</h1>
+
+<div class="p-3">
+  <!-- タブボタン部分 -->
+  <ul class="nav nav-tabs">
+    <li class="nav-item">
+      <a href="#tab1" class="nav-link active" data-toggle="tab">自分の投稿一覧</a>
+    </li>
+    <li class="nav-item">
+      <a href="#tab2" class="nav-link" data-toggle="tab">お気に入りの写真一覧</a>
+    </li>
+  </ul>
+
+  <!--タブのコンテンツ部分-->
+  <div class="tab-content">
+    <div id="tab1" class="tab-pane active">
+      <section class="fdb-block fp-active" data-block-type="features" data-id="1" draggable="true">
+        <div class="container">
+          <div class="row justify-content-center pb-5">
+            <div class="col-12 text-center">
+              <h1><%= @user.name %>の投稿一覧</h1>
+            </div>
+          </div>
+          <% @posts.each do |post| %>
+          <hr>
+          <div class="row text-left align-items-center pt-5 pb-md-5">
+            <div class="col-4 col-md-5">
+              <%= image_tag(post.image, :width => '500', :style => "border-radius: 20px; box-shadow: 0px 0px 20px -5px rgba(0, 0, 0, 0.8);")%>
+            </div>
+
+            <div class="col-12 col-md-5 m-md-auto">
+              <h2><strong><%= post.title %></strong></h2>
+              <p class="text-h3"><%= post.comment %></p>
+              <p><%= link_to "編集する", edit_post_path(post.id) %></p>
+            </div>
+          </div>
+          <% end %>
+        </div>
+      </section>
+    </div>
+
+    <div id="tab2" class="tab-pane">
+        <section class="fdb-block fp-active" data-block-type="features" data-id="1" draggable="true">
+          <div class="container">
+            <div class="row justify-content-center pb-5">
+              <div class="col-12 text-center">
+                <h1><%= @user.name %>のお気に入り一覧</h1>
+              </div>
+            </div>
+            <% if @favorite_posts.present? %>
+                <% @favorite_posts.each do |t| %>
+                <hr>
+            <div class="row text-left align-items-center pt-5 pb-md-5">
+              <div class="col-4 col-md-5">
+                <%= image_tag(t.image, :width => '500', :style => "border-radius: 20px; box-shadow: 0px 0px 20px -5px rgba(0, 0, 0, 0.8);")%>
+              </div>
+
+              <div class="col-12 col-md-5 m-md-auto">
+                <h2><strong><%= t.title %></strong></h2>
+                <p class="text-h3"><%= t.comment %></p>
+                <p><%= link_to "詳細をみる", post_path(t.id) %></p>
+
+              </div>
+            </div>
+            <% end %>
+            <% end %>
+          </div>
+        </section>
+      </div>
+
+  </div>
+</div>
+
+<%= link_to "画像一覧に戻る＞", posts_path, class: 'btn btn-outline-info' %>
