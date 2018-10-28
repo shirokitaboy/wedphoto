@@ -1,6 +1,7 @@
 class PostsController < ApplicationController
   before_action :set_post, only: [:show, :edit, :update, :destroy]
-  before_action :correct_user, only: [:edit, :update, :gallery]
+  before_action :login_ck, only: [:index, :show, :edit, :update, :destroy]
+
   #index
   def index
     #@posts = Post.all
@@ -62,24 +63,27 @@ class PostsController < ApplicationController
 
   def confirm
     @post = Post.new(post_params)
+    #なぜかuserパラメータに対してバリデーションエラー
+    render :new if @post.invalid?
   end
 
   def gallery
     @randposts = Post.order("RANDOM()").limit(5)# 投稿をランダム取得
   end
+
+
   private
   def post_params
-    params.require(:post).permit(:comment, :image, :image_cache, :user_id)
+    params.require(:post).permit(:comment, :image, :image_cache)
   end
-
   def set_post
     @post = Post.find(params[:id])
   end
-
-  def correct_user
-    @post = current_user.posts.find_by(id: params[:id])
-      unless @post
-        redirect_to root_url
-      end
+  def login_ck
+    unless current_user
+      flash[:notice] = '不正を検知しました'
+      render new_session_path
+    end
   end
+
 end

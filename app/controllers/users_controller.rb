@@ -1,5 +1,5 @@
 class UsersController < ApplicationController
-  before_action :correct_user, only: [ :show]
+  before_action :ensure_correct_user, only: [:show]
   def new
     @user = User.new
   end
@@ -30,11 +30,12 @@ private
   def user_params
     params.require(:user).permit(:name,:email,:password,:password_confirmation)
   end
-  def correct_user
-  @post = current_user.posts.find_by(id: params[:id])
-    unless @post
-      redirect_to root_url
-    end
-end
+  def ensure_correct_user
+      @user = User.find(params[:id])
+      if @user.id != @current_user.id
+        flash[:notice] = "権限がありません"
+        redirect_to root_url
+      end
+  end
 
 end

@@ -1,8 +1,8 @@
-  <% if @post.errors.any? %>
+  <% if @comment.errors.any? %>
     <div id="error_explanation">
-      <h2 class="alert alert-success" role="alert"><%= @post.errors.count %>件のエラーがあります。</h2>
+      <h2 class="alert alert-success" role="alert"><%= @comment.errors.count %>件のエラーがあります。</h2>
       <ul class="alert alert-danger" role="alert">
-      <% @post.errors.full_messages.each do |msg| %>
+      <% @comment.errors.full_messages.each do |msg| %>
         <li ><%= msg %></li>
       <% end %>
       </ul>
