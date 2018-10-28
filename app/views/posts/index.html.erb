@@ -18,7 +18,7 @@
             <%= image_tag(post.image_url, :style => " height: 12rem; object-fit: cover", :class => "card-img-top border-bottom")%>
             <% end %>
             <% else %>
-            <%= link_to post_path(post) do %>
+            <%= link_to post_path(post.id) do %>
             <%= image_tag(post.image_url, :style => " height: 12rem; object-fit: cover", :class => "card-img-top border-bottom")%>
             <% end %>
             <% end %>
