@@ -7,15 +7,14 @@ class PostsController < ApplicationController
     @search = Post.ransack(params[:q])
     # 検索結果
     @posts = @search.result(distinct: true)
-
   end
 
   #新規投稿画面
   def new
     if params[:back]
-      @post = Post.new(post_params)
+       @post = Post.new(post_params)
     else
-      @post = Post.new
+       @post = Post.new
     end
   end
 

@@ -45,39 +45,36 @@
           <!--<%= link_to "Register", new_user_path, class: 'btn btn-outline-info'   %>-->
           <%= link_to "Login", new_session_path, class: 'btn btn-outline-info'   %>
         <% end %>
-</nav>
-<% flash.each do |key, value| %>
-  <%= content_tag(:div, value, class: "#{key} alert alert-success", role: "alert") %>
-<% end %>
-    <%= yield %>
-    <footer class="fdb-block footer-large bg-dark fp-active" data-block-type="footers" data-id="19">
-      <div class="container">
-        <div class="row align-items-top text-center text-md-left">
-          <div class="col-12 col-sm-6 col-md-4">
-            <h3><strong>Privacy Policy</strong></h3>
-            <p>当サイトは、個人情報の重要性を認識し、個人情報を保護することが社会的責務であると考え、個人情報に関する法令を遵守し、当サイトで取扱う個人情報の取得、利用、管理を適正に行います。当サイトで収集した情報は、利用目的の範囲内で適切に取り扱います。</p>
-          </div>
-
-          <div class="col-12 col-sm-6 col-md-4 mt-4 mt-sm-0">
-            <h3><strong>Contact</strong></h3>
-            <p>Akihiro Kkagimoto</p>
-            <p>smartphoneyou15@gmail.com</p>
-          </div>
-
-          <div class="col-12 col-md-4 mt-5 mt-md-0 text-md-left">
-            <h3><strong>About Me</strong></h3>
-            <p>I am aiming for full stack engineer.</p>
-            <p>My skills：</p>
-            <p>Cisco/Linux/Openstack/Java/Python/Ruby/etc...</p>
-          </div>
+      </nav>
+  <% flash.each do |key, value| %>
+    <%= content_tag(:div, value, class: "#{key} alert alert-success", role: "alert") %>
+  <% end %>
+  <%= yield %>
+  <footer class="fdb-block footer-large bg-dark fp-active" data-block-type="footers" data-id="19">
+    <div class="container">
+      <div class="row align-items-top text-center text-md-left">
+        <div class="col-12 col-sm-6 col-md-4">
+          <h3><strong>Privacy Policy</strong></h3>
+          <p>当サイトは、個人情報の重要性を認識し、個人情報を保護することが社会的責務であると考え、個人情報に関する法令を遵守し、当サイトで取扱う個人情報の取得、利用、管理を適正に行います。当サイトで収集した情報は、利用目的の範囲内で適切に取り扱います。</p>
         </div>
-
-        <div class="row mt-5">
-          <div class="col text-center">
-            © 2018 Wedphoto. All Rights Reserved
-          </div>
+        <div class="col-12 col-sm-6 col-md-4 mt-4 mt-sm-0">
+          <h3><strong>Contact</strong></h3>
+          <p>Akihiro Kkagimoto</p>
+          <p>smartphoneyou15@gmail.com</p>
+        </div>
+        <div class="col-12 col-md-4 mt-5 mt-md-0 text-md-left">
+          <h3><strong>About Me</strong></h3>
+          <p>I am aiming for full stack engineer.</p>
+          <p>My skills：</p>
+          <p>Cisco/Linux/Openstack/Java/Python/Ruby/etc...</p>
         </div>
       </div>
+      <div class="row mt-5">
+        <div class="col text-center">
+          © 2018 Wedphoto. All Rights Reserved
+        </div>
+      </div>
+    </div>
     </footer>
   </body>
 </html>
