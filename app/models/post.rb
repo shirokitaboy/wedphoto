@@ -1,6 +1,5 @@
 class Post < ApplicationRecord
   validates :image, presence: true
-  validates :title, length: { maximum: 200 }
   validates :comment, presence: true, length: { maximum: 45 }
   mount_uploader :image, ImageUploader
   has_many :favorites, dependent: :destroy
@@ -9,4 +8,6 @@ class Post < ApplicationRecord
   def favorite_user(user_id)
     favorites.find_by(user_id: user_id)
   end
+
+  has_many :recomments
 end

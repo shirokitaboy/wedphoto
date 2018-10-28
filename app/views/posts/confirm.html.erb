@@ -25,7 +25,6 @@
               <div class="field">
                 <%= image_tag(@post.image_url, :style => " width: 100%; object-fit: cover") if @post.image.url %>
                 <%= form.hidden_field :image_cache %>
-                <%= form.hidden_field :title %>
                 <%= form.hidden_field :comment %>
                 <label class="btn btn-primary">
                 	<strong>＋写真を選択する</strong>

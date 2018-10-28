@@ -1,0 +1,10 @@
+<% if logged_in? %>
+  <% if @favorite.present?%>
+    <%= button_to favorite_path(id: @favorite.id), class: "glyphicon glyphicon-star", method: :delete, id: "favorite-button", remote: true do %>
+    <% end %>
+  <% else %>
+    <%= button_to favorites_path(post_id: @post.id), class: "glyphicon glyphicon-star-empty", id: "favorite-button", remote: true do %>
+    <% end %>
+  <% end %>
+<% else %>
+<% end %>

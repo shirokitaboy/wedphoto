@@ -37,6 +37,8 @@ class PostsController < ApplicationController
     # 変数@userを定義
     @user = User.find_by(id: @post.user_id)
     @favorite = current_user.favorites.find_by(post_id: @post.id)
+    @comments = @post.recomments
+    @comment = Recomment.new
   end
 
   def edit
@@ -67,7 +69,7 @@ class PostsController < ApplicationController
   end
   private
   def post_params
-    params.require(:post).permit(:title, :comment, :image, :image_cache, :user_id)
+    params.require(:post).permit(:comment, :image, :image_cache, :user_id)
   end
 
   def set_post

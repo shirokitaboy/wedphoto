@@ -27,7 +27,6 @@
             </div>
 
             <div class="col-12 col-md-5 m-md-auto">
-              <h2><strong><%= post.title %></strong></h2>
               <p class="text-h3"><%= post.comment %></p>
               <p><%= link_to "編集する", edit_post_path(post.id), class: 'btn btn-outline-info' %></p>
             </div>
@@ -54,10 +53,9 @@
               </div>
 
               <div class="col-12 col-md-5 m-md-auto">
-                <h2><strong><%= t.title %></strong></h2>
+                <strong><%= @user.name %>さん</strong>
                 <p class="text-h3"><%= t.comment %></p>
                 <p><%= link_to "詳細をみる", post_path(t.id), class: 'btn btn-outline-info' %></p>
-
               </div>
             </div>
             <% end %>
@@ -65,7 +63,6 @@
           </div>
         </section>
       </div>
+      <%= link_to "画像一覧に戻る＞", posts_path, class: 'btn btn-outline-info' %>
   </div>
 </div>
-
-<%= link_to "画像一覧に戻る＞", posts_path, class: 'btn btn-outline-info' %>
