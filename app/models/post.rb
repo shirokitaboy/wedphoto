@@ -1,6 +1,6 @@
 class Post < ApplicationRecord
   validates :image, presence: true
-  validates :comment, presence: true, length: { maximum: 45 }
+  validates :comment, presence: true, length: { in: 1..45 }
   mount_uploader :image, ImageUploader
   has_many :favorites, dependent: :destroy
   has_many :favorite_users, through: :favorites, source: :user

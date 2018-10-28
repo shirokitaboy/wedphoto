@@ -1,5 +1,6 @@
 class PostsController < ApplicationController
   before_action :set_post, only: [:show, :edit, :update, :destroy]
+  before_action :correct_user, only: [:edit, :update]
   #index
   def index
     #@posts = Post.all
@@ -73,5 +74,12 @@ class PostsController < ApplicationController
 
   def set_post
     @post = Post.find(params[:id])
+  end
+
+  def correct_user
+    @post = current_user.posts.find_by(id: params[:id])
+      unless @post
+        redirect_to root_url
+      end
   end
 end
