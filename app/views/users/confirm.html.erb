@@ -33,14 +33,14 @@
           </div>
           <% end %>
           <div class="row mt-4">
-          <div class="col">
-          <%= form_with(model: @user, url: new_user_path, local: true, method: 'get') do |form| %>
-          <%= form.hidden_field :name %>
-          <%= form.hidden_field :email %>
+            <div class="col">
+            <%= form_with(model: @user, url: new_user_path, local: true, method: 'get') do |form| %>
+            <%= form.hidden_field :name %>
+            <%= form.hidden_field :email %>
             <%= form.submit "戻る", :class=>"btn btn-outline-danger"  %>
-          <% end %>
-        </div>
-      </div>
+            <% end %>
+            </div>
+          </div>
         </div>
       </div>
     </div>

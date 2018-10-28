@@ -14,29 +14,29 @@
           <div class="card" style="width: 18rem; height: 21rem;">
             <% if logged_in? %>
               <% if post.user_id == current_user.id %>
-            <%= link_to edit_post_path(post) do %>
-            <%= image_tag(post.image_url, :style => " height: 12rem; object-fit: cover", :class => "card-img-top border-bottom")%>
-            <% end %>
-            <% else %>
-            <%= link_to post_path(post.id) do %>
-            <%= image_tag(post.image_url, :style => " height: 12rem; object-fit: cover", :class => "card-img-top border-bottom")%>
-            <% end %>
-            <% end %>
-           <% end %>
+                <%= link_to edit_post_path(post) do %>
+                <%= image_tag(post.image_url, :style => " height: 12rem; object-fit: cover", :class => "card-img-top border-bottom")%>
+                <% end %>
+              <% else %>
+                <%= link_to post_path(post.id) do %>
+                <%= image_tag(post.image_url, :style => " height: 12rem; object-fit: cover", :class => "card-img-top border-bottom")%>
+              <% end %>
+             <% end %>
+          <% end %>
             <div class="card-body">
               <strong class="card-title"><%= post.user.name %>さん</strong>
               <p class="card-text" style="word-wrap: break-word;"><%= post.comment %></p>
             </div>
             <% if logged_in? %>
               <% if post.user_id == current_user.id %>
-              <div col-xs-5></div>
-              <div col-xs-2><%= link_to '', post, class: 'fa fa-trash', method: :delete, data: { confirm: '本当に削除しますか?' } %></div>
-              <div col-xs-5></div>
+                <div col-xs-5></div>
+                <div col-xs-2><%= link_to '', post, class: 'fa fa-trash', method: :delete, data: { confirm: '本当に削除しますか?' } %></div>
+                <div col-xs-5></div>
               <% end %>
-             <% end %>
-          </div>
-        </div>
-      <% end %>
+            <% end %>
+         </div>
+      </div>
+    <% end %>
     </div>
   </div>
 </section>

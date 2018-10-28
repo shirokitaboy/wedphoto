@@ -14,4 +14,9 @@
                password: password,
                password_confirmation: password,
                )
+  image = Faker::Avatar.image
+  comment = Faker::StrangerThings.comment
+  Post.create!(image: image,
+               comment: comment
+               )
 end
