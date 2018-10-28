@@ -13,7 +13,6 @@ class UsersController < ApplicationController
     end
   end
 
-  #ユーザーid取得
   def show
     @user = User.find(params[:id])
     @posts = @user.posts

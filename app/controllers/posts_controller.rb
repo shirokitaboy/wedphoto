@@ -2,16 +2,12 @@ class PostsController < ApplicationController
   before_action :set_post, only: [:show, :edit, :update, :destroy]
   before_action :login_ck, only: [:index, :show, :edit, :update, :destroy]
 
-  #index
   def index
     #@posts = Post.all
-    # 検索オブジェクト
     @search = Post.ransack(params[:q])
-    # 検索結果
     @posts = @search.result(distinct: true)
   end
 
-  #新規投稿画面
   def new
     if params[:back]
        @post = Post.new(post_params)
@@ -20,22 +16,18 @@ class PostsController < ApplicationController
     end
   end
 
-  #新規投稿
   def create
     @post = Post.new(post_params)
     @post.user_id = current_user.id
     if @post.save
-      # 一覧画面へ遷移して"投稿しました！"とメッセージを表示します。
       redirect_to posts_path, notice: "投稿しました！"
     else
-      # 入力フォームを再描画します。
       render 'new'
     end
   end
 
   def show
     #@post = Post.find(params[:id])
-    # 変数@userを定義
     @user = User.find_by(id: @post.user_id)
     @favorite = current_user.favorites.find_by(post_id: @post.id)
     @comments = @post.recomments
@@ -55,7 +47,6 @@ class PostsController < ApplicationController
     end
   end
 
-  #投稿削除
   def destroy
     @post.destroy
     redirect_to posts_path, notice:"削除しました！"
