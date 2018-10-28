@@ -18,17 +18,7 @@ private
   def recomment_params
     params.require(:recomment).permit(:content, :user_id, :post_id)
   end
-end
-
-
-def destroy
-  @comment = Comment.find(params[:id])
-  if @comment.destroy
-    render :index, notice; 'コメント削除しました'
-  end
-end
-
-private
   def comment_params
     params.require(:comment).permit(:comment_content, :post_id, :user_id)
   end
+end
