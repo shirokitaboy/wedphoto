@@ -1,6 +1,6 @@
 class PostsController < ApplicationController
   before_action :set_post, only: [:show, :edit, :update, :destroy]
-  before_action :login_ck, only: [:index, :show, :edit, :update, :destroy]
+  before_action :ensure_correct_user, only: [:edit]
 
   def index
     #@posts = Post.all
@@ -59,7 +59,6 @@ class PostsController < ApplicationController
   def confirm
     @post = Post.new(post_params)
     @post.user_id = current_user.id
-    #なぜかuserパラメータに対してバリデーションエラー
     render :new if @post.invalid?
   end
 
@@ -75,11 +74,12 @@ class PostsController < ApplicationController
   def set_post
     @post = Post.find(params[:id])
   end
-  def login_ck
-    unless current_user
-      flash[:notice] = '不正を検知しました'
-      render new_session_path
-    end
+  def ensure_correct_user
+      @user = User.find(params[:id])
+      if @user.id != current_user.id
+        flash[:notice] = "権限がありません"
+        redirect_to root_url
+      end
   end
 
 end
