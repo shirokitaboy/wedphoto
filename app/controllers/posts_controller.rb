@@ -36,6 +36,10 @@ class PostsController < ApplicationController
 
   def edit
     #@post = Post.find(params[:id])
+    unless current_user
+      flash[:notice] = '不正を検知しました'
+      render new_session_path
+    end
   end
 
   def update
@@ -54,6 +58,7 @@ class PostsController < ApplicationController
 
   def confirm
     @post = Post.new(post_params)
+    @post.user_id = current_user.id
     #なぜかuserパラメータに対してバリデーションエラー
     render :new if @post.invalid?
   end
