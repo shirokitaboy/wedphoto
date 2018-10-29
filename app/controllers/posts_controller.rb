@@ -5,7 +5,7 @@ class PostsController < ApplicationController
   def index
     #@posts = Post.all
     @search = Post.ransack(params[:q])
-    @posts = @search.result(distinct: true)
+    @posts = @search.result(distinct: true).all.order("created_at DESC")
   end
 
   def new
