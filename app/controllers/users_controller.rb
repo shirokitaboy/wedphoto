@@ -9,12 +9,14 @@ class UsersController < ApplicationController
     @user = User.new(user_params)
       if @user.save
         ContactMailer.contact_mail(@user).deliver
+        session.delete(:user_id) if logged_in?
+        session[:user_id] = @user.id
         redirect_to user_path(@user.id)
       else
         render 'new'
       end
   end
-  
+
   def show
     @user = User.find(params[:id])
     @posts = @user.posts
