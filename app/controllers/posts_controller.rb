@@ -36,10 +36,6 @@ class PostsController < ApplicationController
 
   def edit
     #@post = Post.find(params[:id])
-    unless current_user
-      flash[:notice] = '不正を検知しました'
-      render new_session_path
-    end
   end
 
   def update
@@ -76,7 +72,7 @@ class PostsController < ApplicationController
   end
   def ensure_correct_user
       @post = Post.find(params[:id])
-      if @post.user.id != current_user.id
+      if @post.user_id != current_user.id
         flash[:notice] = "権限がありません"
         redirect_to root_url
       end
