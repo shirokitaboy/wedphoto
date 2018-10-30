@@ -43,16 +43,15 @@
               <hr>
               </div>
               <% end %>
-              <%= form_with(model: @comment,local: true, multipart: true) do |f| %>
+              <%= form_with(model: @comment, local: true) do |f| %>
               <%= f.hidden_field :user_id, :value => current_user.id %>
               <%= f.hidden_field :post_id, :value => @post.id %>
               <div class="input-group">
-                <%= f.search_field :content, :class=>"form-control col-xs-8 col-md-10" %>
+              <%= f.search_field :content, :class=>"form-control col-xs-8 col-md-10" %>
                   <span class="input-group-btn">
                     <div class="btn btn-default"><%= f.submit "コメントする", :class=>"btn btn-default"%></div>
                   </span>
               </div>
-            <% end %>
             </div>
           </div>
           <div class="row mt-4">
@@ -76,3 +75,4 @@
     </div>
   </div>
 </section>
+<% end %>

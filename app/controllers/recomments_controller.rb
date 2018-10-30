@@ -1,16 +1,16 @@
 class RecommentsController < ApplicationController
   def create
-    @comment = Recomment.new(recomment_params)
-    if @comment.save
-      redirect_back(fallback_location: root_path)
+    @Reply = Recomment.new(recomment_params)
+    if @Reply.save
+      redirect_back(fallback_location: root_path, notice: "メッセージを投稿しました！")
     else
-      redirect_back(fallback_location: root_path)
+      redirect_back(fallback_location: root_path, notice: "メッセージを送れませんでした")
     end
   end
   def destroy
-    @comment = Recomment.find(params[:id])
-    if @comment.destroy
-      redirect_to posts_url, notice: "コメント削除しました"
+    @Reply = Recomment.find(params[:id])
+    if @Reply.destroy
+      redirect_to posts_url, notice: "メッセージを削除しました"
     end
   end
 

@@ -1,3 +1,4 @@
+<%= form_with(model: @user, url: confirm_users_path, local: true) do |f| %>
 <% if @user.errors.any? %>
   <div id="error_explanation">
     <h2 class="alert alert-success" role="alert"><%= @user.errors.count %> 件のエラーがあります。</h2>
@@ -13,7 +14,6 @@
     <div class="row justify-content-center">
       <div class="col-12 col-md-8 col-lg-7 col-md-5 text-center">
         <div class="fdb-box fdb-touch">
-         <%= form_with(model: @user, url: confirm_users_path, local: true) do |f| %>
           <div class="row">
             <div class="col">
               <h1>Register</h1>
